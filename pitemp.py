@@ -41,7 +41,8 @@ while 1:
     filetext = "CPU temp: " + str(cputemp) + "'C, GPU Temp: " + str(gputemp) + "'C\n"
     writefile(filetext)
     if high(cputemp) or high(gputemp):
-        sendemail(True, cputemp, gputemp)
+        if starttime % 60 == 0:
+            sendemail(True, cputemp, gputemp)
     starttime += 15
     time.sleep(15)
 
