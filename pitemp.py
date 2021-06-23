@@ -8,6 +8,7 @@ from mailsender import sendemail
 gputempcmd = "sudo vcgencmd measure_temp"
 cputempcmd = "cat /sys/class/thermal/thermal_zone0/temp"
 date = datetime.now()
+starttime = 0
 
 def runcommand(command):
     stream = os.popen(command)
@@ -39,6 +40,7 @@ while 1:
     filetext = "CPU temp: " + str(cputemp) + "'C, GPU Temp: " + str(gputemp)
     writefile(filetext)
     if high(gputemp):
-        sendemail("high", gputemp)
+        sendemail(True, gputemp)
+    starttime += 15
     time.sleep(15)
 
