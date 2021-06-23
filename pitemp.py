@@ -40,7 +40,7 @@ while 1:
     cputemp = float(runcommand(cputempcmd).read())/1000
     filetext = "CPU temp: " + str(cputemp) + "'C, GPU Temp: " + str(gputemp) + "'C\n"
     writefile(filetext)
-    if high(gputemp):
+    if high(cputemp) or high(gputemp):
         sendemail(True, cputemp, gputemp)
     starttime += 15
     time.sleep(15)
