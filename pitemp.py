@@ -34,9 +34,10 @@ def high(temp):
         return False
 
 while 1:
-    output = runcommand(tempcmd).read()
-    writefile(output)
-    if high(removetext(output)):
-        sendemail("high", removetext(output))
+    gputemp = removetext(runcommand(gputempcmd).read())
+    cputemp = float(runcommand(cputempcmd).read())/1000
+    writefile("CPU temp: " + cputemp + " 'C, GPU Temp: " + gputemp + "'C")
+    if high(gputemp):
+        sendemail("high", gputemp)
     time.sleep(15)
 
