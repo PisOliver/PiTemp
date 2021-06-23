@@ -9,15 +9,14 @@ password = "Sender Email Password"
 senderemail = "Sender Email Address"
 receivemail = "Receiver Email Address"
 
-def sendemail(ishigh, temp):
+def sendemail(ishigh, cputemp, gputemp):
     server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
     msg = EmailMessage()
     msg['From'] = senderemail
     msg['To'] = receivemail
     if ishigh:
         msg['Subject'] = 'Warning about high temperature'
-        msg.set_content('Be safe! Your Raspberry Pi temperature is high, it is ' + str(temp) + " 'C")
-
+        msg.set_content('Be safe! Your Raspberry Pi temperature is high, its GPU temp is  ' + str(gputemp) + " 'C, its CPU temp is " + str(cputemp) + "'C")
     server.login(senderemail, password)
     server.send_message(msg)
     server.quit()

@@ -26,6 +26,7 @@ def writefile(content):
 def removetext(bem):
     num = bem.replace('temp=', '')
     num = num.replace("'C", '')
+    num = num.replace("\n", '')
     return num
 
 def high(temp):
@@ -37,10 +38,10 @@ def high(temp):
 while 1:
     gputemp = removetext(runcommand(gputempcmd).read())
     cputemp = float(runcommand(cputempcmd).read())/1000
-    filetext = "CPU temp: " + str(cputemp) + "'C, GPU Temp: " + str(gputemp)
+    filetext = "CPU temp: " + str(cputemp) + "'C, GPU Temp: " + str(gputemp) + "'C\n"
     writefile(filetext)
     if high(gputemp):
-        sendemail(True, gputemp)
+        sendemail(True, cputemp, gputemp)
     starttime += 15
     time.sleep(15)
 
