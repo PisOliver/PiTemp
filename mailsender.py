@@ -16,7 +16,7 @@ def sendemail(hol, temp):
     msg['To'] = receivemail
     if hol == "high":
         msg['Subject'] = 'Warning about high temperature'
-        msg.set_content('Be safe! Your Raspberry Pi temperature is high, it is ' + str(temp) + "'C")
+        msg.set_content('Be safe! Your Raspberry Pi temperature is high, it is ' + str(temp) + " 'C")
 
     server.login(senderemail, password)
     server.send_message(msg)

@@ -28,7 +28,7 @@ def removetext(bem):
     return num
 
 def high(temp):
-    if float(temp) > 65.0:
+    if float(temp) > 72.0:
         return True
     else:
         return False
@@ -36,7 +36,8 @@ def high(temp):
 while 1:
     gputemp = removetext(runcommand(gputempcmd).read())
     cputemp = float(runcommand(cputempcmd).read())/1000
-    writefile("CPU temp: " + cputemp + " 'C, GPU Temp: " + gputemp + "'C")
+    filetext = "CPU temp: " + str(cputemp) + "'C, GPU Temp: " + str(gputemp)
+    writefile(filetext)
     if high(gputemp):
         sendemail("high", gputemp)
     time.sleep(15)
